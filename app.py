@@ -262,7 +262,7 @@ with tab1:
 
         with col1:
             if st.button("🔄 Refresh All Prices", use_container_width=True):
-                st.session_state.last_refresh = datetime.now()
+                st.session_state.last_refresh = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 st.info("Fetching prices... This may take a few minutes.")
                 progress = st.progress(0)
 
@@ -332,7 +332,8 @@ with tab2:
         with col1:
             st.metric("Total Games Tracked", len(games_df))
         with col2:
-            st.metric("Last Refresh", st.session_state.last_refresh or "Never")
+            refresh_time = st.session_state.last_refresh.strftime("%Y-%m-%d %H:%M:%S") if st.session_state.last_refresh else "Never"
+st.metric("Last Refresh", refresh_time)
         with col3:
             rates = get_currency_rates()
             st.metric("INR Rate (USD)", f"₹{rates['INR']:.2f}")
