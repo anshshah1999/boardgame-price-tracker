@@ -329,13 +329,13 @@ with tab2:
         st.markdown("---")
         col1, col2, col3 = st.columns(3)
 
-with col1:
-    st.metric("Total Games Tracked", len(games_df))
-with col2:
-    st.metric("Last Refresh", refresh_time)
-with col3:
-    rates = get_currency_rates()
-    st.metric("INR Rate (USD)", f"₹{rates['INR']:.2f}")
+            with col1:
+                st.metric("Total Games Tracked", len(games_df))
+            with col2:
+                st.metric("Last Refresh", refresh_time)
+            with col3:
+                rates = get_currency_rates()
+                st.metric("INR Rate (USD)", f"₹{rates['INR']:.2f}")
     else:
         st.info("📌 Add games to see analysis")
 
